@@ -45,14 +45,51 @@ def page(path, title, desc, body, crumbs=(), schema=None, main_cls=''):
     if schema: gl += schema
     ld = '<script type="application/ld+json">' + json.dumps({"@context": "https://schema.org", "@graph": gl}, ensure_ascii=False) + '</script>' if gl else ''
     canon = DOM + path
+    og_type = 'article' if '/blog/' in path and path != '/blogs/' else 'website'
     h = '''<!doctype html>
 <html lang="en-IN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>[[T]]</title><meta name="description" content="[[D]]">
+<meta name="author" content="Dr. Sachchidanand Singh">
 [[ROBOTS]]<link rel="canonical" href="[[C]]">
-<meta property="og:type" content="website"><meta property="og:site_name">
-<meta property="og:title" content="[[T]]"><meta property="og:description" content="[[D]]"><meta property="og:url" content="[[C]]"><meta property="og:image" content="[[DOM]]/assets/img/dr-sachchidanand-singh.jpg"><meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#0e2a5a"><link rel="icon" href="@/favicon.ico" sizes="48x48"><link rel="icon" type="image/png" href="@/assets/img/favicon-64.png"><link rel="apple-touch-icon" href="@/assets/img/apple-touch-icon.png"><link rel="manifest" href="@/site.webmanifest">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<meta property="og:type" content="[[OG_TYPE]]">
+<meta property="og:site_name" content="Shanti Neuropsychiatry Centre">
+<meta property="og:title" content="[[T]]">
+<meta property="og:description" content="[[D]]">
+<meta property="og:url" content="[[C]]">
+<meta property="og:image" content="[[DOM]]/assets/img/og-image.jpg">
+<meta property="og:image:secure_url" content="[[DOM]]/assets/img/og-image.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Dr. Sachchidanand Singh - Top Neuropsychiatrist in Patna | Shanti Neuropsychiatry Centre">
+<meta property="og:locale" content="en_IN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="[[T]]">
+<meta name="twitter:description" content="[[D]]">
+<meta name="twitter:image" content="[[DOM]]/assets/img/og-image.jpg">
+<meta name="twitter:image:alt" content="Dr. Sachchidanand Singh - Top Neuropsychiatrist in Patna | Shanti Neuropsychiatry Centre">
+<meta name="geo.region" content="IN-BR">
+<meta name="geo.placename" content="Patna, Bihar, India">
+<meta name="geo.position" content="25.601853;85.153666">
+<meta name="ICBM" content="25.601853, 85.153666">
+<meta name="format-detection" content="telephone=no">
+<meta name="theme-color" content="#0e2a5a">
+<meta name="msapplication-TileColor" content="#0e2a5a">
+<meta name="apple-mobile-web-app-title" content="Shanti Neuro">
+<meta name="application-name" content="Shanti Neuro">
+<link rel="icon" type="image/x-icon" href="@/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="@/assets/img/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="@/assets/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="@/assets/img/favicon-48x48.png">
+<link rel="icon" type="image/png" sizes="64x64" href="@/assets/img/favicon-64.png">
+<link rel="apple-touch-icon" sizes="180x180" href="@/apple-touch-icon.png">
+<link rel="apple-touch-icon-precomposed" sizes="180x180" href="@/apple-touch-icon-precomposed.png">
+<link rel="manifest" href="@/site.webmanifest">
+<link rel="dns-prefetch" href="https://fonts.googleapis.com">
+<link rel="dns-prefetch" href="https://fonts.gstatic.com">
+<link rel="dns-prefetch" href="https://maps.googleapis.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Public+Sans:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="@/assets/css/site.css">[[LD]]</head>
 <body><div hidden>[[ICONS]]</div><a class="skip" href="#main">Skip to content</a>
@@ -113,38 +150,121 @@ def page(path, title, desc, body, crumbs=(), schema=None, main_cls=''):
 </div>
 </header>
 [[BC]]<main id="main" class="[[MC]]">[[BODY]]</main>
-<footer><div class="wrap cols">
-<div>
-  <img src="@/assets/img/logo-full.png" width="170" height="170" alt="Dr. Sachchidanand Singh, Psychiatrist, Patna. Better Mind, Healthier Life." loading="lazy" data-cms="clinic_logo_drive_url" data-cms-attr="src">
-  <div style="margin-top:1rem;font-size:.9rem;line-height:1.5">
-    <p style="margin:0 0 .5rem"><strong>Shanti Neuropsychiatry Centre</strong><br>Consultant Neuropsychiatrist & De-Addiction Specialist</p>
-    <p style="margin:0"><span class="badge" style="background:#f59e0b;color:#000;font-weight:700;padding:.2rem .5rem;border-radius:3px">4.9 ★</span> Over 1,600+ Patient Reviews</p>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col col-brand">
+        <a href="@/" class="footer-logo-link" aria-label="Shanti Neuropsychiatry Centre">
+          <img src="@/assets/img/logo-full.png" width="160" height="160" alt="Dr. Sachchidanand Singh, Shanti Neuropsychiatry Centre" loading="lazy" data-cms="clinic_logo_drive_url" data-cms-attr="src" class="footer-logo-img">
+        </a>
+        <h3 class="f-brand-title">Shanti Neuropsychiatry Centre</h3>
+        <p class="f-brand-sub">Dr. Sachchidanand Singh • MD Psychiatry (CIP Ranchi)</p>
+        <p class="f-brand-tagline">Compassionate, confidential, evidence-based neuropsychiatric and de-addiction care in Kankarbagh, Patna.</p>
+        <div class="f-rating-pill">
+          <span class="f-rating-num">4.9 ★</span>
+          <span class="f-rating-text">Over 1,600+ Verified Patient Reviews on Google &amp; Justdial</span>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-head">Clinical Services</h4>
+        <ul class="footer-nav">
+          <li><a href="@/services/">All Psychiatric Services</a></li>
+          <li><a href="@/service/counselling/">Counselling &amp; CBT</a></li>
+          <li><a href="@/service/de-addiction/">De-Addiction Clinic</a></li>
+          <li><a href="@/service/child-adolescent/">Child &amp; Adolescent Care</a></li>
+          <li><a href="@/service/video-consultation/">Video Teleconsultation</a></li>
+          <li><a href="@/blogs/">Mental Health Library</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-head">Clinic &amp; Timings</h4>
+        <div class="footer-contact-items">
+          <div class="f-contact-row">
+            <svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg>
+            <address data-cms="clinic_address">[[ADDR]]</address>
+          </div>
+          <div class="f-contact-row">
+            <svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg>
+            <div>
+              <a href="tel:+917070474808" data-cms="phone_primary" data-cms-attr="tel">+91 70704 74808</a><br>
+              <a href="tel:+919905400460" data-cms="phone_secondary" data-cms-attr="tel">+91 99054 00460</a>
+            </div>
+          </div>
+          <div class="f-contact-row">
+            <svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg>
+            <div>
+              <a href="mailto:shantineuropsychiatry@gmail.com" data-cms="clinic_email" data-cms-attr="mailto">shantineuropsychiatry@gmail.com</a>
+            </div>
+          </div>
+          <div class="f-contact-row">
+            <svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>
+            <div>
+              <strong>Mon – Sat:</strong> 9:00 am – 12:00 pm, 3:00 pm – 7:00 pm<br>
+              <span class="f-closed">Sunday: Closed</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-head">Connect &amp; Location</h4>
+        <p class="f-connect-desc">Follow verified clinical channels for educational videos, clinic directions &amp; quick messaging:</p>
+        <div class="footer-social-grid">
+          <a class="f-social-btn wa" href="https://wa.me/917070474808" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <svg class="ic" aria-hidden="true"><use href="#i-whatsapp"/></svg>
+            <span>WhatsApp</span>
+          </a>
+          <a class="f-social-btn gmb" href="https://maps.app.goo.gl/DeZgu7aFKnqsi6L69" target="_blank" rel="noopener" aria-label="Google Maps">
+            <svg class="ic" aria-hidden="true"><use href="#i-google-map"/></svg>
+            <span>Google Maps</span>
+          </a>
+          <a class="f-social-btn yt" href="https://www.youtube.com/@drsachchidanandsingh" target="_blank" rel="noopener" aria-label="YouTube">
+            <svg class="ic" aria-hidden="true"><use href="#i-youtube"/></svg>
+            <span>YouTube</span>
+          </a>
+          <a class="f-social-btn fb" href="https://www.facebook.com/sachchidanand.singh.5" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg class="ic" aria-hidden="true"><use href="#i-facebook"/></svg>
+            <span>Facebook</span>
+          </a>
+          <a class="f-social-btn insta" href="https://instagram.com/drsachchi" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg class="ic" aria-hidden="true"><use href="#i-instagram"/></svg>
+            <span>Instagram</span>
+          </a>
+          <a class="f-social-btn in" href="https://in.linkedin.com/in/dr-sachchidanand-singh-28724647" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg class="ic" aria-hidden="true"><use href="#i-linkedin"/></svg>
+            <span>LinkedIn</span>
+          </a>
+        </div>
+        <div class="f-cta-wrap">
+          <a class="btn f-book-btn" href="@/appointment/">
+            <svg class="ic" style="color:#fff;width:1rem;height:1rem;margin-right:.4rem" aria-hidden="true"><use href="#i-calendar"/></svg> Request Appointment
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="f-legal-notice">
+        <p class="f-copy">&copy; 2026 Shanti Neuropsychiatry Centre. All Rights Reserved. &bull; Dr. Sachchidanand Singh, MBBS (PMCH), MD (CIP Ranchi).</p>
+        <p class="f-disclaimer">Medical Disclaimer: General medical information only. The online request form and WhatsApp are not emergency services. In an emergency, please visit the nearest hospital emergency department immediately.</p>
+      </div>
+      <div class="f-legal-links">
+        <a href="@/privacy/">Privacy</a>
+        <a href="@/terms/">Terms</a>
+        <a href="@/accessibility/">Accessibility</a>
+        <a href="@/medical-disclaimer/">Medical disclaimer</a>
+      </div>
+    </div>
   </div>
-</div>
-<div>
-  <h2>Contact & Location</h2>
-  <p><a href="tel:+917070474808" data-cms="phone_primary" data-cms-attr="tel">+91 70704 74808</a><br><a href="tel:+919905400460" data-cms="phone_secondary" data-cms-attr="tel">+91 99054 00460</a><br><a href="mailto:shantineuropsychiatry@gmail.com" data-cms="clinic_email" data-cms-attr="mailto">shantineuropsychiatry@gmail.com</a></p>
-  <p data-cms="clinic_address">[[ADDR]]</p>
-  <div class="social-links" style="margin-top:.75rem">
-    <a class="social-btn wa" href="https://wa.me/917070474808" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-whatsapp"/></svg> WhatsApp</a>
-    <a class="social-btn gmb" href="https://maps.app.goo.gl/DeZgu7aFKnqsi6L69" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-google-map"/></svg> Google Maps</a>
-    <a class="social-btn yt" href="https://www.youtube.com/@drsachchidanandsingh" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-youtube"/></svg> YouTube</a>
-    <a class="social-btn fb" href="https://www.facebook.com/sachchidanand.singh.5" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-facebook"/></svg> Facebook</a>
-    <a class="social-btn insta" href="https://instagram.com/drsachchi" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-instagram"/></svg> Instagram</a>
-    <a class="social-btn in" href="https://in.linkedin.com/in/dr-sachchidanand-singh-28724647" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-linkedin"/></svg> LinkedIn</a>
-  </div>
-</div>
-<div>
-  <h2>Consultation Hours & Notice</h2>
-  <p><strong>Mon – Sat:</strong> 9:00 am – 12:00 pm, 3:00 pm – 7:00 pm<br><strong>Sunday:</strong> Closed</p>
-  <p>This website provides general information and is not personal medical advice. The request form and WhatsApp are not emergency services. In an emergency go to the nearest hospital emergency department.</p>
-  <div class="flinks"><a href="@/privacy/">Privacy</a><a href="@/terms/">Terms</a><a href="@/accessibility/">Accessibility</a><a href="@/medical-disclaimer/">Medical disclaimer</a></div>
-</div></div></footer>
+</footer>
 <script src="@/assets/js/config.js"></script>
 <script src="@/assets/js/cms.js" defer></script>
 <script src="@/assets/js/site.js" defer></script></body></html>'''
-    h = h.replace('[[T]]', title).replace('[[D]]', desc).replace('[[C]]', canon).replace('[[DOM]]', DOM).replace('[[LD]]', ld).replace('[[ICONS]]', ICONS).replace('[[CL]]', CLINIC).replace('[[NAV]]', nav).replace('[[M_NAV]]', m_nav).replace('[[BC]]', bc).replace('[[MC]]', main_cls).replace('[[ADDR]]', ADDR.replace('<br>', ', ')).replace('<meta property="og:site_name">', '<meta property="og:site_name" content="%s">' % CLINIC)
-    h = h.replace('[[ROBOTS]]', '' if LAUNCH else '<meta name="robots" content="noindex, nofollow">\n').replace('[[BODY]]', body)
+    robots_tag = '<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">\n<meta name="googlebot" content="index, follow">\n' if LAUNCH else '<meta name="robots" content="noindex, nofollow">\n'
+    h = h.replace('[[T]]', title).replace('[[D]]', desc).replace('[[C]]', canon).replace('[[DOM]]', DOM).replace('[[LD]]', ld).replace('[[ICONS]]', ICONS).replace('[[CL]]', CLINIC).replace('[[NAV]]', nav).replace('[[M_NAV]]', m_nav).replace('[[BC]]', bc).replace('[[MC]]', main_cls).replace('[[ADDR]]', ADDR.replace('<br>', ', ')).replace('[[OG_TYPE]]', og_type)
+    h = h.replace('[[ROBOTS]]', robots_tag).replace('[[BODY]]', body)
     h = re.sub(r'(href|src)="@/([^"]*)"', fix, h)
     d = ROOT + ('' if path == '/' else path)
     os.makedirs(d, exist_ok=True)
@@ -161,12 +281,26 @@ CLIN = {
     "url": DOM + "/",
     "telephone": "+91-7070474808",
     "email": "shantineuropsychiatry@gmail.com",
-    "image": DOM + "/assets/img/dr-sachchidanand-singh.jpg",
-    "medicalSpecialty": "Psychiatric",
+    "image": DOM + "/assets/img/og-image.jpg",
+    "logo": DOM + "/assets/img/logo-full.png",
+    "medicalSpecialty": ["Psychiatric", "CommunityHealth"],
+    "priceRange": "₹₹",
+    "currenciesAccepted": "INR",
+    "paymentAccepted": "Cash, UPI, Credit Card, Debit Card",
+    "areaServed": [
+        {"@type": "AdministrativeArea", "name": "Patna"},
+        {"@type": "AdministrativeArea", "name": "Bihar"},
+        {"@type": "AdministrativeArea", "name": "India"}
+    ],
+    "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 25.6018528,
+        "longitude": 85.1536657
+    },
     "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "4.9",
-        "reviewCount": "1620",
+        "reviewCount": "1640",
         "bestRating": "5",
         "worstRating": "1"
     },
@@ -189,18 +323,32 @@ CLIN = {
         "https://instagram.com/drsachchi",
         "https://in.linkedin.com/in/dr-sachchidanand-singh-28724647",
         "https://share.google/f71kgcyca5U7wbLtC",
-        "https://maps.app.goo.gl/DeZgu7aFKnqsi6L69"
+        "https://maps.app.goo.gl/DeZgu7aFKnqsi6L69",
+        "https://www.practo.com/patna/doctor/sachchidanand-singh-psychiatrist"
     ]
 }
 
 DOC = {
     "@type": "Physician",
     "name": "Dr. Sachchidanand Singh",
-    "jobTitle": "Consultant Neuropsychiatrist",
+    "jobTitle": "Senior Consultant Neuropsychiatrist & De-Addiction Specialist",
     "medicalSpecialty": "Psychiatric",
     "worksFor": {"@id": DOM + "/#clinic"},
     "image": DOM + "/assets/img/dr-sachchidanand-singh.jpg",
-    "url": DOM + "/about/"
+    "url": DOM + "/about/",
+    "alumniOf": {
+        "@type": "EducationalOrganization",
+        "name": "Central Institute of Psychiatry (CIP), Ranchi"
+    },
+    "knowsAbout": [
+        "Depression Treatment",
+        "Anxiety and Panic Disorders",
+        "Obsessive Compulsive Disorder (OCD)",
+        "De-Addiction Medicine",
+        "Bipolar Affective Disorder",
+        "Insomnia and Sleep Disorders",
+        "Child & Adolescent Psychiatry"
+    ]
 }
 
 FAQ_SCHEMA = {
@@ -259,6 +407,23 @@ about_body = '''
 
       <h2>About Shanti Neuropsychiatry Centre</h2>
       <p><span data-cms="clinic_name">Shanti Neuropsychiatry Centre</span> was established in 2015 on Rajni Path, PC Colony, Kankarbagh (directly opposite Savera Cancer Hospital). The facility is equipped to provide full psychiatric consultations, one-to-one counseling, cognitive behaviour therapy (CBT), psychological testing, addiction rehabilitation support, and telemedicine services.</p>
+    </div>
+  </div>
+
+  <div class="banner-showcase-card" style="margin-top:2.5rem">
+    <div class="banner-img-container">
+      <img src="@/assets/img/clinic-showcase-banner.jpg" width="1024" height="576" alt="Dr. Sachchidanand Singh - Neuropsychiatry Care Spectrum in Patna" class="banner-showcase-img" loading="lazy">
+    </div>
+    <div class="banner-showcase-bar">
+      <div class="banner-bar-content">
+        <span class="banner-badge"><svg class="ic" aria-hidden="true"><use href="#i-verified"/></svg> Comprehensive Clinical Care Spectrum</span>
+        <h3>Because Your Mind Matters &bull; You Are Not Alone</h3>
+        <p>Providing evidence-based psychiatric evaluations, medication management, counselling, and de-addiction care with compassion, dignity, and absolute patient confidentiality.</p>
+      </div>
+      <div class="banner-bar-actions">
+        <a class="btn" href="@/appointment/">Book an Appointment</a>
+        <a class="btn alt" href="tel:+917070474808" data-cms="phone_primary" data-cms-attr="tel">Call +91 70704 74808</a>
+      </div>
     </div>
   </div>
 </div>
@@ -394,7 +559,7 @@ contact_html = '''<div class="wrap" style="padding-bottom:3rem">
     <span class="gmb-verified"><svg class="ic" aria-hidden="true"><use href="#i-verified"/></svg> Verified Google My Business Profile</span>
   </div>
 
-  <div class="cols" style="align-items:start">
+  <div class="cols visit-cols" style="align-items:stretch">
     <div>
       <ul class="clist">
         <li>[[IC_PHONE]]<div><b>Phone Numbers</b><a href="tel:+917070474808" data-cms="phone_primary" data-cms-attr="tel">+91 70704 74808</a><br><a href="tel:+919905400460" data-cms="phone_secondary" data-cms-attr="tel">+91 99054 00460</a></div></li>
@@ -403,15 +568,17 @@ contact_html = '''<div class="wrap" style="padding-bottom:3rem">
         <li>[[IC_CLOCK]]<div><b>Consultation Hours</b><span data-cms="clinic_hours_text">Monday to Saturday<br>Morning: 9:00 am to 12:00 pm<br>Evening: 3:00 pm to 7:00 pm<br>Sunday: Closed</span><br><span class="state" id="state" style="margin:.4rem 0 0"><span class="dot"></span><span id="state-t">Checking hours</span></span></div></li>
       </ul>
 
-      <div class="acts" style="margin-top:1.5rem">
+      <div class="acts" style="margin-top:1.25rem">
         <a class="btn" href="https://maps.app.goo.gl/DeZgu7aFKnqsi6L69" target="_blank" rel="noopener"><svg class="ic" style="color:#fff;width:1.1rem;height:1.1rem;margin-right:.3rem" aria-hidden="true"><use href="#i-directions"/></svg> Open in Google Maps</a>
         <a class="btn alt" href="https://share.google/f71kgcyca5U7wbLtC" target="_blank" rel="noopener"><svg class="ic" style="width:1.1rem;height:1.1rem;margin-right:.3rem" aria-hidden="true"><use href="#i-google-map"/></svg> View GMB Listing</a>
         <a class="btn alt" href="https://wa.me/917070474808" target="_blank" rel="noopener"><svg class="ic" style="width:1.1rem;height:1.1rem;margin-right:.3rem" aria-hidden="true"><use href="#i-whatsapp"/></svg> WhatsApp Chat</a>
       </div>
 
       <div style="margin-top:1.5rem;border-top:1px solid var(--line);padding-top:1rem">
-        <span style="font-size:.85rem;font-weight:600;color:var(--soft);text-transform:uppercase;letter-spacing:.03em;display:block;margin-bottom:.5rem">Connect Across Social Channels:</span>
+        <span style="font-size:.82rem;font-weight:700;color:var(--soft);text-transform:uppercase;letter-spacing:.04em;display:block;margin-bottom:.6rem">Official Verified Social Channels:</span>
         <div class="social-links">
+          <a class="social-btn wa" href="https://wa.me/917070474808" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-whatsapp"/></svg> WhatsApp</a>
+          <a class="social-btn gmb" href="https://share.google/f71kgcyca5U7wbLtC" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-google-map"/></svg> Google Business</a>
           <a class="social-btn yt" href="https://www.youtube.com/@drsachchidanandsingh" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-youtube"/></svg> YouTube</a>
           <a class="social-btn fb" href="https://www.facebook.com/sachchidanand.singh.5" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-facebook"/></svg> Facebook</a>
           <a class="social-btn insta" href="https://instagram.com/drsachchi" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-instagram"/></svg> Instagram</a>
@@ -420,15 +587,52 @@ contact_html = '''<div class="wrap" style="padding-bottom:3rem">
       </div>
     </div>
 
-    <div>
-      <div class="map-responsive">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3598.058371190479!2d85.15366567539515!3d25.601852777451996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ed589a8de481fd%3A0x779c1baae8ae55d4!2sShanti%20Neuropsychiatry%20Centre%20Dr%20Sachchidanand%20Singh%20%7C%20Psychiatrist%20in%20Patna!5e0!3m2!1sen!2sin!4v1729100000000!5m2!1sen!2sin" width="100%" height="400" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Google My Business Map Location - Shanti Neuropsychiatry Centre Patna"></iframe>
+    <div class="visit-right-col" style="display:flex;flex-direction:column;justify-content:space-between">
+      <div>
+        <div class="map-responsive" style="margin-top:0;height:340px">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3598.058371190479!2d85.15366567539515!3d25.601852777451996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ed589a8de481fd%3A0x779c1baae8ae55d4!2sShanti%20Neuropsychiatry%20Centre%20Dr%20Sachchidanand%20Singh%20%7C%20Psychiatrist%20in%20Patna!5e0!3m2!1sen!2sin!4v1729100000000!5m2!1sen!2sin" width="100%" height="340" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Google My Business Map Location - Shanti Neuropsychiatry Centre Patna"></iframe>
+        </div>
+        <p style="font-size:.88rem;color:var(--soft);margin-top:.75rem;margin-bottom:1rem"><strong>Landmarks:</strong> Directly opposite Savera Cancer Hospital, adjacent to Doctor's Colony and PC Colony Park, Kankarbagh.</p>
       </div>
-      <div class="prose" style="padding-top:1.25rem;padding-bottom:0">
-        <h2>Finding the Clinic</h2>
-        <p>The clinic is located on <strong>Rajni Path in PC Colony, Kankarbagh</strong>, directly in front of <strong>Savera Cancer Hospital</strong>. Landmark landmarks include PC Colony Play Ground, Doctor\'s Colony, and Old Bypass Road.</p>
-        <h2>Booking Your Visit</h2>
-        <p>The quickest way to book is to <a href="@/appointment/">submit an appointment request</a> online or message on WhatsApp. Staff will confirm your slot during working hours.</p>
+
+      <div class="visit-transit-panel">
+        <span class="v-subhead"><svg class="ic" style="width:1.1rem;height:1.1rem;vertical-align:-2px" aria-hidden="true"><use href="#i-pin"/></svg> Transit Proximity &amp; Commute Times:</span>
+        <div class="transit-grid">
+          <div class="transit-card">
+            <span class="transit-icon">🚆</span>
+            <div>
+              <strong>Patna Jn. Stn.</strong>
+              <span>~3.8 km • 12 mins drive</span>
+            </div>
+          </div>
+          <div class="transit-card">
+            <span class="transit-icon">🚆</span>
+            <div>
+              <strong>Rajendra Nagar</strong>
+              <span>~2.1 km • 7 mins drive</span>
+            </div>
+          </div>
+          <div class="transit-card">
+            <span class="transit-icon">✈️</span>
+            <div>
+              <strong>Patna Airport</strong>
+              <span>~7.5 km • 20 mins drive</span>
+            </div>
+          </div>
+          <div class="transit-card">
+            <span class="transit-icon">🚌</span>
+            <div>
+              <strong>Mithapur ISBT</strong>
+              <span>~4.2 km • 14 mins drive</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="visit-amenities-row">
+          <div class="v-amenity-chip"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg> Ground Floor Wheelchair Accessible</div>
+          <div class="v-amenity-chip"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg> Patient Vehicle Parking</div>
+          <div class="v-amenity-chip"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg> Pharmacy On-Premise</div>
+        </div>
       </div>
     </div>
   </div>
@@ -630,14 +834,69 @@ LEG = {
 for s, (t, d, b) in LEG.items():
     page('/%s/' % s, t + ' | ' + CLINIC, d, head(t, d) + prose(b), [(t, '/%s/' % s)])
 
-# SITEMAP, ROBOTS, AND REDIRECTS
+# ADVANCED SITEMAP, ROBOTS, AND REDIRECTS
 if '/' in PAGES:
     PAGES.remove('/')
     PAGES.insert(0, '/')
 
-sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + ''.join('<url><loc>%s%s</loc></url>\n' % (DOM, p) for p in PAGES) + '</urlset>\n'
-open(ROOT + '/sitemap.xml', 'w').write(sm)
-open(ROOT + '/robots.txt', 'w').write(('User-agent: *\nAllow: /\nSitemap: %s/sitemap.xml\n' % DOM) if LAUNCH else 'User-agent: *\nDisallow: /\n')
+sm_entries = []
+for p in PAGES:
+    loc = DOM + ('/' if p == '/' else p)
+    if p == '/':
+        prio = '1.0'
+        freq = 'weekly'
+        img_tag = f'''  <image:image>
+    <image:loc>{DOM}/assets/img/clinic-showcase-banner.jpg</image:loc>
+    <image:title>Dr. Sachchidanand Singh - Top Neuropsychiatrist in Patna</image:title>
+    <image:caption>Comprehensive psychiatric care spectrum and clinic in Kankarbagh, Patna</image:caption>
+  </image:image>
+  <image:image>
+    <image:loc>{DOM}/assets/img/dr-sachchidanand-singh.jpg</image:loc>
+    <image:title>Dr. Sachchidanand Singh</image:title>
+    <image:caption>Consultant Neuropsychiatrist &amp; De-Addiction Specialist, MD Psychiatry (CIP Ranchi)</image:caption>
+  </image:image>'''
+    elif p in ['/services/', '/about/', '/appointment/', '/contact/'] or p.startswith('/service/'):
+        prio = '0.9'
+        freq = 'weekly'
+        img_tag = f'''  <image:image>
+    <image:loc>{DOM}/assets/img/og-image.jpg</image:loc>
+    <image:title>Shanti Neuropsychiatry Centre Patna</image:title>
+  </image:image>'''
+    elif p == '/blogs/' or p.startswith('/blog/'):
+        prio = '0.8'
+        freq = 'monthly'
+        img_tag = ''
+    else:
+        prio = '0.5'
+        freq = 'yearly'
+        img_tag = ''
+    
+    entry = f'''<url>
+  <loc>{loc}</loc>
+  <lastmod>2026-10-17</lastmod>
+  <changefreq>{freq}</changefreq>
+  <priority>{prio}</priority>
+{img_tag}
+</url>''' if img_tag else f'''<url>
+  <loc>{loc}</loc>
+  <lastmod>2026-10-17</lastmod>
+  <changefreq>{freq}</changefreq>
+  <priority>{prio}</priority>
+</url>'''
+    sm_entries.append(entry)
+
+sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n' + '\n'.join(sm_entries) + '\n</urlset>\n'
+open(ROOT + '/sitemap.xml', 'w', encoding='utf-8').write(sm)
+
+robots_txt = f'''User-agent: *
+Allow: /
+
+# Canonical Sitemaps
+Sitemap: {DOM}/sitemap.xml
+''' if LAUNCH else '''User-agent: *
+Disallow: /
+'''
+open(ROOT + '/robots.txt', 'w', encoding='utf-8').write(robots_txt)
 
 OLD = 'lorem-ipsum-dolor-sit-amet-consectetur-adipisicing-elittempore'
 RD = [

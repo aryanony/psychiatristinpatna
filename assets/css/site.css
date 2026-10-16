@@ -18,16 +18,30 @@ header{border-bottom:1px solid var(--line);background:#fff;position:sticky;top:0
 .brand b{display:block;font:600 1.1rem/1.1 Newsreader,Georgia,serif}
 .brand span{font-size:.85rem;color:var(--soft)}
 .desktop-nav{display:flex;flex-wrap:wrap;gap:.25rem 1.25rem;align-items:center}
-.desktop-nav a{color:var(--ink);text-decoration:none;padding:.35rem 0;border-bottom:2px solid transparent;font-weight:500}
-.desktop-nav a:hover{border-color:var(--teal);color:var(--navy)}
-.desktop-nav a[aria-current=page]{border-color:var(--navy);font-weight:600;color:var(--navy)}
-.btn{display:inline-block;font:600 1rem/1 "Public Sans",sans-serif;padding:.95rem 1.4rem;border-radius:4px;border:2px solid var(--navy);text-decoration:none;cursor:pointer;background:var(--navy);color:#fff}
-.btn:hover{background:#08204a}
-.btn.alt{background:transparent;color:var(--navy)}.btn.alt:hover{background:var(--mist)}
+.desktop-nav a{color:var(--ink);text-decoration:none;padding:.35rem 0;position:relative;font-weight:500;transition:color .2s ease}
+.desktop-nav a::after{content:"";position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--teal);transition:width .25s cubic-bezier(0.16,1,0.3,1)}
+.desktop-nav a:hover{color:var(--navy)}
+.desktop-nav a:hover::after{width:100%}
+.desktop-nav a[aria-current=page]{color:var(--navy);font-weight:600}
+.desktop-nav a[aria-current=page]::after{width:100%;background:var(--navy)}
+.btn{display:inline-flex;align-items:center;justify-content:center;font:600 1rem/1 "Public Sans",sans-serif;padding:.95rem 1.45rem;border-radius:6px;border:2px solid var(--navy);text-decoration:none;cursor:pointer;background:var(--navy);color:#fff;transition:transform .2s cubic-bezier(0.16,1,0.3,1),box-shadow .2s ease,background .2s ease;box-shadow:0 2px 6px rgba(14,42,90,.12)}
+.btn:hover{background:#08204a;transform:translateY(-2px);box-shadow:0 8px 20px rgba(14,42,90,.22);text-decoration:none}
+.btn:active{transform:translateY(0);box-shadow:0 2px 4px rgba(14,42,90,.12)}
+.btn.alt{background:transparent;color:var(--navy);border-color:var(--navy);box-shadow:none}
+.btn.alt:hover{background:var(--mist);transform:translateY(-2px);box-shadow:0 4px 14px rgba(14,42,90,.08)}
 .btn.sm{padding:.6rem 1rem}
-.hero{padding-block:clamp(2.5rem,7vw,5.5rem);display:grid;gap:2.5rem}
-@media(min-width:58rem){.hero{grid-template-columns:1.35fr 1fr;align-items:end}}
-.hero p.lead{font-size:1.2rem;margin:1.25rem 0 1.75rem;color:var(--soft)}
+.hero{padding-block:clamp(2.5rem,6vw,4.5rem);display:grid;gap:2.5rem}
+@media(min-width:58rem){.hero{grid-template-columns:1.3fr 1fr;align-items:center;gap:3.5rem}}
+.hero-badge-row{display:flex;flex-wrap:wrap;align-items:center;gap:.65rem;margin-bottom:1.25rem}
+.hero-status-pill{display:inline-flex;align-items:center;gap:.5rem;background:#eef8f1;color:#1e6a27;font-size:.84rem;font-weight:700;padding:.32rem .75rem;border-radius:20px;border:1px solid #c3e6cb}
+.pulse-dot{width:8px;height:8px;border-radius:50%;background:#28a745;position:relative;display:inline-block;animation:pulseDot 2s infinite}
+@keyframes pulseDot{0%{transform:scale(.95);box-shadow:0 0 0 0 rgba(40,167,69,.7)}70%{transform:scale(1);box-shadow:0 0 0 7px rgba(40,167,69,0)}100%{transform:scale(.95);box-shadow:0 0 0 0 rgba(40,167,69,0)}}
+.hero-creds-pill{font-size:.84rem;font-weight:600;color:var(--soft);background:var(--mist);padding:.32rem .75rem;border-radius:20px;border:1px solid var(--line)}
+.hero-highlights{display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem;margin-top:1.75rem;padding-top:1.25rem;border-top:1px solid var(--line)}
+.hero-hl-item{display:flex;align-items:center;gap:.55rem;font-size:.88rem;color:var(--ink);font-weight:500}
+.hero-hl-item .ic{width:1.15rem;height:1.15rem;color:var(--leaf);flex-shrink:0}
+@media(max-width:32rem){.hero-highlights{grid-template-columns:1fr}}
+.hero p.lead{font-size:1.18rem;margin:1.1rem 0 1.5rem;color:var(--soft)}
 .acts{display:flex;flex-wrap:wrap;gap:.75rem}
 .hours{background:var(--mist);border-left:6px solid var(--leaf);padding:1.5rem}
 .hours h2{font-size:1.35rem;margin-bottom:.5rem}
@@ -61,13 +75,6 @@ input[aria-invalid=true]{border-color:#b3261e}
 #result[hidden]{display:none}
 #result pre{white-space:pre-wrap;background:var(--mist);padding:1rem;margin:1rem 0;font:inherit;font-size:.98rem}
 .visit address{font-style:normal;margin-bottom:1rem}
-footer{background:var(--navy);color:#e8eef7;padding:3rem 0 2rem}
-footer a{color:#fff}
-footer .cols{gap:2rem}
-@media(min-width:58rem){footer .cols{grid-template-columns:auto 1fr 1fr;gap:3rem}}
-footer img{width:170px;background:#fff;padding:.5rem;border-radius:4px}
-footer p{font-size:.95rem}
-footer h2{color:#fff;font-size:1.1rem;margin-bottom:.5rem}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 .crumbs{font-size:.9rem;color:var(--soft);padding-top:1.25rem}.pagehead h1{max-width:24ch}.crumbs a{color:var(--soft)}
 .pagehead{padding-block:1.5rem 2.5rem}.pagehead p{color:var(--soft);font-size:1.15rem;margin-top:1rem}
@@ -425,18 +432,27 @@ body.drawer-locked{
 .hero-doc-info p{margin:0;font-size:.92rem;color:var(--soft)}
 .hero-doc-meta{display:flex;flex-wrap:wrap;gap:.4rem .8rem;font-size:.85rem;color:var(--navy);font-weight:500;padding-top:.4rem;border-top:1px solid var(--line)}
 
-/* Service Cards Grid */
+/* Service Cards Grid & Hover Elevation */
 .svc-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:2rem}
-.svc-card{background:#fff;border:1px solid var(--line);border-radius:6px;padding:1.5rem;display:flex;flex-direction:column;justify-content:space-between;transition:transform .2s ease,box-shadow .2s ease}
-.svc-card:hover{transform:translateY(-3px);box-shadow:0 6px 18px rgba(14,42,90,.08);border-color:var(--teal)}
-.svc-card h3{font:600 1.3rem/1.25 Newsreader,Georgia,serif;color:var(--navy);margin-bottom:.6rem}
+.svc-card{background:#fff;border:1px solid var(--line);border-radius:8px;padding:1.5rem;display:flex;flex-direction:column;justify-content:space-between;transition:transform .3s cubic-bezier(0.16,1,0.3,1),box-shadow .3s cubic-bezier(0.16,1,0.3,1),border-color .3s ease;overflow:hidden}
+.svc-card:hover{transform:translateY(-6px);box-shadow:0 12px 32px rgba(14,42,90,.12);border-color:var(--teal)}
+.svc-card h3{font:600 1.3rem/1.25 Newsreader,Georgia,serif;color:var(--navy);margin-bottom:.6rem;transition:color .2s ease}
+.svc-card:hover h3{color:var(--teal)}
 .svc-card p{color:var(--soft);font-size:.95rem;line-height:1.5;margin-bottom:1.25rem}
-.svc-card .more{color:var(--teal);font-weight:600;font-size:.92rem;text-decoration:none;display:inline-flex;align-items:center;gap:.3rem}
-.svc-card .more:hover{text-decoration:underline}
+.svc-card .more{color:var(--teal);font-weight:700;font-size:.92rem;text-decoration:none;display:inline-flex;align-items:center;gap:.35rem}
+.svc-card .more .ic{transition:transform .25s ease}
+.svc-card:hover .more .ic{transform:translateX(5px)}
+
+/* Service Card Image & Zoom */
+.svc-card-img{width:100%;height:165px;object-fit:cover;border-radius:6px;margin-bottom:1rem;background:var(--mist);display:block;transition:transform .4s ease}
+.svc-card:hover .svc-card-img{transform:scale(1.03)}
+.svc-head{display:flex;align-items:center;gap:.75rem;margin-bottom:.6rem}
+.svc-head .ic{width:1.6rem;height:1.6rem;color:var(--navy)}
 
 /* Testimonials / Patient Reviews */
 .reviews-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1.5rem;margin-top:1.5rem}
-.review-card{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:1.5rem;position:relative}
+.review-card{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:1.5rem;position:relative;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.review-card:hover{transform:translateY(-4px);box-shadow:0 10px 24px rgba(14,42,90,.08);border-color:#b4c6cc}
 .review-card .stars{color:#f59e0b;font-size:1.1rem;margin-bottom:.6rem;letter-spacing:2px}
 .review-card blockquote{margin:0 0 1rem;font-size:.95rem;color:var(--ink);line-height:1.55;font-style:italic}
 .review-card .author{font-weight:600;font-size:.9rem;color:var(--navy);margin:0}
@@ -444,19 +460,17 @@ body.drawer-locked{
 
 /* FAQ Accordion / List */
 .faq-list{display:grid;gap:1.25rem;margin-top:1.5rem}
-.faq-item{background:#fff;border:1px solid var(--line);border-radius:6px;padding:1.35rem 1.5rem}
+.faq-item{background:#fff;border:1px solid var(--line);border-radius:8px;padding:1.35rem 1.5rem;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.faq-item:hover{transform:translateX(4px);border-color:var(--teal);box-shadow:0 4px 16px rgba(14,42,90,.06)}
 .faq-item h3{font:600 1.15rem/1.3 Newsreader,Georgia,serif;color:var(--navy);margin-bottom:.5rem}
 .faq-item p{margin:0;color:var(--soft);font-size:.95rem;line-height:1.6}
 
 /* Doctor Credentials Badge */
 .doc-badge-pill{display:inline-flex;align-items:center;gap:.4rem;background:var(--mist);color:var(--navy);font-size:.85rem;font-weight:600;padding:.25rem .65rem;border-radius:4px;margin-bottom:.8rem}
 
-/* Service Card Image & Icon styling */
-.svc-card-img{width:100%;height:160px;object-fit:cover;border-radius:4px;margin-bottom:1rem;background:var(--mist);display:block}
-.svc-head{display:flex;align-items:center;gap:.75rem;margin-bottom:.6rem}
-.svc-head .ic{width:1.6rem;height:1.6rem;color:var(--navy)}
-
 /* Google My Business & Maps Section */
+.visit-cols{align-items:stretch}
+@media(min-width:58rem){.visit-cols{grid-template-columns:1fr 1.12fr;gap:2.5rem}}
 .gmb-box{background:#fff;border:1px solid var(--line);border-radius:8px;padding:1.5rem;box-shadow:0 6px 20px rgba(14,42,90,.06);margin-top:1.5rem}
 .gmb-badge-row{display:flex;flex-wrap:wrap;align-items:center;gap:.75rem;margin-bottom:1rem}
 .gmb-badge{display:inline-flex;align-items:center;gap:.45rem;background:#fff8e1;color:#b45309;font-weight:700;font-size:.9rem;padding:.35rem .75rem;border-radius:4px;border:1px solid #fde68a}
@@ -466,21 +480,107 @@ body.drawer-locked{
 .map-responsive{position:relative;width:100%;border-radius:8px;overflow:hidden;box-shadow:0 4px 14px rgba(0,0,0,.08);margin-top:1rem;background:var(--mist);height:400px}
 .map-responsive iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
 
-/* Social Channel Buttons */
-.social-links{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1rem}
-.social-btn{display:inline-flex;align-items:center;gap:.45rem;padding:.45rem .85rem;border-radius:4px;font-size:.88rem;font-weight:600;text-decoration:none;transition:transform .15s ease,opacity .15s ease}
-.social-btn:hover{opacity:.92;transform:translateY(-1px);text-decoration:none}
-.social-btn .ic{width:1.15rem;height:1.15rem}
-.social-btn.yt{background:#cc0000;color:#fff}
-.social-btn.fb{background:#1877f2;color:#fff}
-.social-btn.insta{background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);color:#fff}
-.social-btn.in{background:#0077b5;color:#fff}
-.social-btn.wa{background:#25d366;color:#fff}
-.social-btn.gmb{background:#ea4335;color:#fff}
+/* Transit Proximity & Commute Times (Eliminates Above-Footer Blank Space) */
+.visit-transit-panel{background:var(--mist);border:1px solid var(--line);border-radius:8px;padding:1.15rem 1.25rem;margin-top:.75rem}
+.v-subhead{font-size:.84rem;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.03em;display:flex;align-items:center;gap:.4rem;margin-bottom:.75rem}
+.transit-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.65rem;margin-bottom:.85rem}
+.transit-card{display:flex;align-items:flex-start;gap:.6rem;background:#fff;border:1px solid var(--line);border-radius:6px;padding:.55rem .75rem;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.transit-card:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(14,42,90,.07);border-color:var(--teal)}
+.transit-icon{font-size:1.15rem;line-height:1}
+.transit-card strong{display:block;font-size:.84rem;color:var(--navy);line-height:1.25}
+.transit-card span{display:block;font-size:.78rem;color:var(--soft);line-height:1.3;margin-top:.15rem}
+.visit-amenities-row{display:flex;flex-wrap:wrap;gap:.45rem;border-top:1px solid var(--line);padding-top:.75rem}
+.v-amenity-chip{display:inline-flex;align-items:center;gap:.35rem;font-size:.78rem;font-weight:600;color:var(--navy);background:#fff;padding:.3rem .6rem;border-radius:4px;border:1px solid var(--line)}
+.v-amenity-chip .ic{width:.9rem;height:.9rem;color:var(--leaf)}
+@media(max-width:36rem){.transit-grid{grid-template-columns:1fr}}
+
+/* Social Channel Buttons (High Contrast, Branded & Fully Visible) */
+.social-links{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:.75rem}
+.social-btn{display:inline-flex;align-items:center;gap:.45rem;padding:.48rem .85rem;border-radius:5px;font-size:.85rem;font-weight:700;text-decoration:none!important;transition:all .2s cubic-bezier(0.16,1,0.3,1);box-shadow:0 2px 6px rgba(0,0,0,.08);color:#fff!important}
+.social-btn .ic{width:1.1rem;height:1.1rem;color:#fff!important;flex-shrink:0}
+.social-btn:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.15);filter:brightness(1.08)}
+.social-btn.wa{background:#25d366}
+.social-btn.gmb{background:#ea4335}
+.social-btn.yt{background:#cc0000}
+.social-btn.fb{background:#1877f2}
+.social-btn.insta{background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)}
+.social-btn.in{background:#0077b5}
 
 /* GMB Care Updates & Facilities Grid */
 .updates-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.25rem;margin-top:1.5rem}
-.update-card{background:var(--mist);border-radius:6px;padding:1.15rem;border-left:4px solid var(--teal)}
+.update-card{background:var(--mist);border-radius:6px;padding:1.15rem;border-left:4px solid var(--teal);transition:transform .2s ease}
+.update-card:hover{transform:translateX(3px)}
 .update-card h4{font:600 1.05rem/1.2 Newsreader,Georgia,serif;color:var(--navy);margin:0 0 .35rem}
 .update-card p{font-size:.9rem;color:var(--soft);margin:0;line-height:1.45}
+
+/* ==========================================================================
+   EXECUTIVE 4-COLUMN FOOTER & SUB-FOOTER
+   ========================================================================== */
+footer{background:linear-gradient(180deg,#0a1d3d 0%,#081730 100%);color:#e2e8f0;padding:4rem 0 2rem;border-top:3px solid var(--teal)}
+footer a{color:#cbd5e1;text-decoration:none;transition:color .2s ease}
+footer a:hover{color:#fff;text-decoration:underline}
+.footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2.75rem;align-items:start}
+@media(min-width:64rem){.footer-grid{grid-template-columns:1.35fr 1fr 1.25fr 1.35fr;gap:3rem}}
+.footer-col{display:flex;flex-direction:column}
+.footer-logo-link{display:inline-block;margin-bottom:1rem;text-decoration:none!important}
+.footer-logo-img{width:150px;height:auto;background:#fff;padding:.65rem;border-radius:8px;box-shadow:0 4px 16px rgba(0,0,0,.25);display:block;transition:transform .25s ease}
+.footer-logo-img:hover{transform:scale(1.02)}
+.f-brand-title{font:600 1.25rem/1.2 Newsreader,Georgia,serif;color:#fff;margin:0 0 .3rem}
+.f-brand-sub{font-size:.88rem;color:#94a3b8;margin:0 0 .6rem;font-weight:500}
+.f-brand-tagline{font-size:.86rem;line-height:1.55;color:#cbd5e1;margin:0 0 1rem}
+.f-rating-pill{display:inline-flex;align-items:center;gap:.6rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:6px;padding:.45rem .75rem;width:fit-content}
+.f-rating-num{background:#f59e0b;color:#000;font-weight:800;font-size:.85rem;padding:.2rem .5rem;border-radius:4px;letter-spacing:.02em}
+.f-rating-text{font-size:.82rem;color:#f1f5f9;line-height:1.3}
+.footer-head{font:600 1.15rem Newsreader,Georgia,serif;color:#fff;margin:0 0 1.25rem;padding-bottom:.4rem;border-bottom:2px solid var(--teal);display:inline-block;letter-spacing:.01em}
+.footer-nav{list-style:none;padding:0;margin:0;display:grid;gap:.65rem}
+.footer-nav li a{font-size:.92rem;display:inline-flex;align-items:center;gap:.4rem;color:#cbd5e1;transition:all .2s ease}
+.footer-nav li a::before{content:"›";font-size:1.1rem;color:var(--teal);line-height:1;transition:transform .2s ease}
+.footer-nav li a:hover{color:#fff;text-decoration:none}
+.footer-nav li a:hover::before{transform:translateX(3px);color:#38bdf8}
+.footer-contact-items{display:grid;gap:.9rem;font-size:.9rem}
+.f-contact-row{display:flex;gap:.75rem;align-items:flex-start;line-height:1.5}
+.f-contact-row .ic{width:1.2rem;height:1.2rem;color:var(--teal);margin-top:.2rem;flex-shrink:0}
+.f-contact-row address{font-style:normal;color:#cbd5e1}
+.f-contact-row a{color:#e2e8f0;transition:color .2s ease}
+.f-contact-row a:hover{color:#38bdf8;text-decoration:none}
+.f-closed{color:#f87171;font-weight:600;font-size:.84rem}
+.f-connect-desc{font-size:.86rem;color:#94a3b8;line-height:1.45;margin:0 0 1rem}
+.footer-social-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.55rem}
+.f-social-btn{display:inline-flex;align-items:center;gap:.45rem;padding:.45rem .75rem;border-radius:6px;font-size:.82rem;font-weight:700;color:#fff!important;text-decoration:none!important;transition:transform .2s ease,box-shadow .2s ease,filter .2s ease;box-shadow:0 2px 6px rgba(0,0,0,.25)}
+.f-social-btn:hover{transform:translateY(-2px);filter:brightness(1.12);box-shadow:0 6px 14px rgba(0,0,0,.35)}
+.f-social-btn .ic{width:1.1rem;height:1.1rem;color:#fff!important;flex-shrink:0}
+.f-social-btn.wa{background:#25d366}
+.f-social-btn.gmb{background:#ea4335}
+.f-social-btn.yt{background:#cc0000}
+.f-social-btn.fb{background:#1877f2}
+.f-social-btn.insta{background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)}
+.f-social-btn.in{background:#0077b5}
+.f-cta-wrap{margin-top:1.15rem}
+.f-book-btn{background:var(--teal);border-color:var(--teal);color:#fff!important;width:100%;text-align:center;display:flex;align-items:center;justify-content:center;padding:.75rem 1rem;font-size:.92rem;font-weight:700;border-radius:6px;box-shadow:0 4px 14px rgba(18,128,143,.3)}
+.f-book-btn:hover{background:#0e6b77;border-color:#0e6b77;text-decoration:none!important;box-shadow:0 6px 20px rgba(18,128,143,.45)}
+.footer-bottom{margin-top:3.5rem;padding-top:1.75rem;border-top:1px solid rgba(255,255,255,.12);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1.25rem 2rem;font-size:.84rem;color:#94a3b8}
+.f-legal-notice{max-width:44rem}
+.f-copy{margin:0 0 .3rem;color:#cbd5e1;font-weight:500}
+.f-disclaimer{margin:0;font-size:.78rem;line-height:1.45;color:#94a3b8}
+.f-legal-links{display:flex;flex-wrap:wrap;gap:.5rem 1.25rem}
+.f-legal-links a{color:#94a3b8;font-size:.84rem;transition:color .2s ease}
+.f-legal-links a:hover{color:#fff;text-decoration:none}
+
+/* ==========================================================================
+   CLINICAL CARE SPECTRUM SHOWCASE BANNER
+   ========================================================================== */
+.banner-showcase-section{padding:1.5rem 0 3.5rem}
+.banner-showcase-card{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:0 10px 30px rgba(14,42,90,.07);transition:transform .3s cubic-bezier(0.16,1,0.3,1),box-shadow .3s cubic-bezier(0.16,1,0.3,1),border-color .3s ease}
+.banner-showcase-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(14,42,90,.12);border-color:var(--teal)}
+.banner-img-container{position:relative;width:100%;aspect-ratio:16/9;background:var(--mist);overflow:hidden}
+.banner-showcase-img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease}
+.banner-showcase-card:hover .banner-showcase-img{transform:scale(1.015)}
+.banner-showcase-bar{padding:1.5rem 1.75rem;background:linear-gradient(180deg,#fff 0%,var(--mist) 100%);border-top:1px solid var(--line);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1.25rem 2rem}
+.banner-bar-content{max-width:44rem}
+.banner-badge{display:inline-flex;align-items:center;gap:.4rem;font-size:.82rem;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:.04em;margin-bottom:.4rem}
+.banner-badge .ic{width:1rem;height:1rem;color:var(--teal)}
+.banner-bar-content h3{font:600 1.35rem/1.2 Newsreader,Georgia,serif;color:var(--navy);margin:0 0 .35rem}
+.banner-bar-content p{margin:0;font-size:.92rem;color:var(--soft);line-height:1.5}
+.banner-bar-actions{display:flex;flex-wrap:wrap;gap:.65rem}
+
 

@@ -1,3 +1,5 @@
 User-agent: *
 Allow: /
+
+# Canonical Sitemaps
 Sitemap: https://www.psychiatristinpatna.com/sitemap.xml
