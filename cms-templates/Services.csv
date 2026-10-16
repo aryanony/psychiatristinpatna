@@ -1,0 +1,7 @@
+ID,Service_Name,Short_Description,Details_Link,Icon_Key
+SVC-01,Psychiatric consultation,"A full assessment and diagnosis by a psychiatrist, followed by a personalized treatment plan with medicines and guidance.",/services/,psychiatry
+SVC-02,Counselling,"Structured one-to-one counselling at the centre to address stress, grief, relationships, and emotional wellbeing.",/service/counselling/,counselling
+SVC-03,Cognitive behaviour therapy & Assessment,Evidence-based CBT and comprehensive psychological evaluations conducted by a qualified psychotherapist.,/service/counselling/,therapy
+SVC-04,De-Addiction & Substance Rehabilitation,"Medically supervised detoxification and long-term relapse prevention programs for alcohol, tobacco, cannabis, and prescription drug dependence.",/service/de-addiction/,rehab
+SVC-05,Child & Adolescent Mental Health,"Compassionate evaluation and treatment for ADHD, behavioural difficulties, childhood depression, and academic stress in youth.",/service/child-adolescent/,pediatric
+SVC-06,Video or audio consultation,"Telemedicine consultations for patients unable to visit the clinic in person, adhering to national clinical guidelines.",/service/video-consultation/,telemedicine

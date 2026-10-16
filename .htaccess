@@ -1,0 +1,11 @@
+# Apache
+ErrorDocument 404 /404.html
+DirectoryIndex index.html
+Options -Indexes
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule ^blog/lorem-ipsum-dolor-sit-amet-consectetur-adipisicing-elittempore-minus/?$ /blog/depression-is-not-just-low-mood/ [R=301,L]
+RewriteRule ^blog/lorem-ipsum-dolor-sit-amet-consectetur-adipisicing-elittempore/?$ /blog/ocd-can-it-be-cured/ [R=301,L]
+RewriteRule ^service/video-consultation-45/?$ /service/video-consultation/ [R=301,L]
+RewriteRule ^gallery/?$ / [R=301,L]
+</IfModule>

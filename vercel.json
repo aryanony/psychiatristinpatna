@@ -1,0 +1,26 @@
+{
+ "cleanUrls": false,
+ "trailingSlash": true,
+ "redirects": [
+  {
+   "source": "/blog/lorem-ipsum-dolor-sit-amet-consectetur-adipisicing-elittempore-minus",
+   "destination": "/blog/depression-is-not-just-low-mood/",
+   "permanent": true
+  },
+  {
+   "source": "/blog/lorem-ipsum-dolor-sit-amet-consectetur-adipisicing-elittempore",
+   "destination": "/blog/ocd-can-it-be-cured/",
+   "permanent": true
+  },
+  {
+   "source": "/service/video-consultation-45",
+   "destination": "/service/video-consultation/",
+   "permanent": true
+  },
+  {
+   "source": "/gallery",
+   "destination": "/",
+   "permanent": true
+  }
+ ]
+}

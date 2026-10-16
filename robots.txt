@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://www.psychiatristinpatna.com/sitemap.xml

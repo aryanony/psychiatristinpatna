@@ -1,0 +1,24 @@
+Parameter_Key,Value,Description,Category,Example / Notes
+doctor_name,Dr. Sachchidanand Singh,Full name of the doctor,Doctor Profile,"Displayed in header, bio, and footer"
+doctor_title,Consultant Psychiatrist,Doctor professional title,Doctor Profile,E.g. Consultant Psychiatrist
+doctor_qualifications,"MBBS (PMCH), MD Psychiatry (CIP Ranchi)",Medical degrees and training,Doctor Profile,Shown in About & Credentials
+clinic_name,Shanti Neuropsychiatry Centre,Name of the clinic,Clinic Info,Displayed throughout the website
+clinic_city,"Patna, Bihar",City and state location,Clinic Info,"Patna, Bihar"
+phone_primary,+91 70704 74808,Primary clinic calling number,Contact,Call & SMS clickable link
+phone_secondary,+91 99054 00460,Alternate phone number,Contact,Secondary clinic line
+whatsapp_number,917070474808,WhatsApp number with country code,Contact,No '+' or dashes; for direct WhatsApp booking
+clinic_email,shantineuropsychiatry@gmail.com,Clinic email address,Contact,For inquiries and correspondence
+clinic_address,"G-37, Rajni Path, in front of Savera Cancer Hospital, PC Colony, Kankarbagh, Patna 800020",Full physical address,Clinic Info,Exact street address for patients
+clinic_hours_text,"Monday to Saturday: 9:00 am – 12:00 pm, 3:00 pm – 7:00 pm (Sunday Closed)",Working hours text,Clinic Info,Displayed in clinic hours block
+google_maps_url,https://www.google.com/maps/search/?api=1&query=Shanti+Neuropsychiatry+Centre+Kankarbagh+Patna,Google Maps location link,Contact,Opens directions in Google Maps
+hero_title,A calm first conversation with a psychiatrist in Patna,Main headline on homepage,Homepage,"Keep clear, comforting, and welcoming"
+hero_lead,Dr. Sachchidanand Singh sees patients at Shanti Neuropsychiatry Centre in Kankarbagh. Send a request and the clinic will follow up by phone to agree a time.,Homepage sub-headline / lead text,Homepage,Explains what to expect
+about_doctor_summary,Dr. Sachchidanand Singh is a consultant psychiatrist in Patna. He trained at the Central Institute of Psychiatry in Ranchi and has worked in several clinical settings since 2015. His clinical approach focuses on personalized mental health care without stigma.,Short bio about the doctor,Doctor Profile,Homepage & About section summary
+banner_alert_active,FALSE,"Set TRUE to display top notice banner, FALSE to hide",Announcement,TRUE or FALSE (all uppercase)
+banner_alert_text,Notice: Clinic is open Mon-Sat. Walk-in and WhatsApp appointment requests are being accepted.,Message text inside announcement banner,Announcement,E.g. Holiday hours or special announcement
+doctor_photo_drive_url,https://drive.google.com/file/d/YOUR_DOCTOR_PHOTO_ID/view?usp=sharing,Doctor photo Google Drive share link,Media / Images,Paste ANY Google Drive link; system auto-converts to CDN image
+clinic_logo_drive_url,https://drive.google.com/file/d/YOUR_LOGO_ID/view?usp=sharing,Clinic logo Google Drive share link,Media / Images,Leave default or paste your Google Drive share link
+clinic_emblem_drive_url,https://drive.google.com/file/d/YOUR_EMBLEM_ID/view?usp=sharing,Header emblem Google Drive share link,Media / Images,Paste Google Drive share link
+youtube_url,https://www.youtube.com/@drsachchidanandsingh,YouTube channel link,Social Media,Video talks & mental health guides
+facebook_url,https://www.facebook.com/sachchidanand.singh.5,Facebook page link,Social Media,Official Facebook profile
+instagram_url,https://instagram.com/drsachchi,Instagram profile link,Social Media,Clinic Instagram handle
