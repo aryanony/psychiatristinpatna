@@ -2,4 +2,5 @@ User-agent: *
 Allow: /
 
 # Canonical Sitemaps
+Sitemap: https://psychiatristinpatna.vercel.app/sitemap.xml
 Sitemap: https://www.psychiatristinpatna.com/sitemap.xml

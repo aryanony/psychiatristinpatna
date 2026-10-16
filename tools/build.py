@@ -5,7 +5,10 @@ import os, re, sys, json
 # Production launch mode (active by default for final launch, unless --staging is explicitly passed)
 LAUNCH = '--staging' not in sys.argv
 REVIEWED_BY = 'Dr. Sachchidanand Singh, MD Psychiatry (CIP Ranchi)'
-DOM = 'https://www.psychiatristinpatna.com'
+if '--custom-domain' in sys.argv:
+    DOM = 'https://www.psychiatristinpatna.com'
+else:
+    DOM = os.environ.get('SITE_DOMAIN', 'https://psychiatristinpatna.vercel.app').rstrip('/')
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CLINIC = 'Shanti Neuropsychiatry Centre'
 ADDR = 'G-37, Rajni Path, in front of Savera Cancer Hospital<br>PC Colony, Kankarbagh, Patna 800020'
@@ -62,7 +65,14 @@ def page(path, title, desc, body, crumbs=(), schema=None, main_cls=''):
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Dr. Sachchidanand Singh - Top Neuropsychiatrist in Patna | Shanti Neuropsychiatry Centre">
+<meta property="og:image" content="[[DOM]]/assets/img/og-image.png">
+<meta property="og:image:secure_url" content="[[DOM]]/assets/img/og-image.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Dr. Sachchidanand Singh - Top Neuropsychiatrist in Patna | Shanti Neuropsychiatry Centre">
 <meta property="og:locale" content="en_IN">
+<link rel="image_src" href="[[DOM]]/assets/img/og-image.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="[[T]]">
 <meta name="twitter:description" content="[[D]]">
@@ -893,6 +903,7 @@ Allow: /
 
 # Canonical Sitemaps
 Sitemap: {DOM}/sitemap.xml
+Sitemap: https://www.psychiatristinpatna.com/sitemap.xml
 ''' if LAUNCH else '''User-agent: *
 Disallow: /
 '''
